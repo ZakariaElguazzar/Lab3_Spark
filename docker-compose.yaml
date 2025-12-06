@@ -16,7 +16,7 @@ services:
       # Persister les journaux HDFS
       - ./volumes/namenode/logs:/opt/hadoop/logs
       # Volume pour vos fichiers locaux
-      - ./data:/data
+      - ./volumes/data:/data
     networks:
       - spark-network
 
@@ -26,7 +26,8 @@ services:
     env_file:
       - ./config
     volumes:
-      - ./volumes/datanode:/tmp/hadoop-root/dfs/data  # ✅ Ajouté
+      - ./volumes/datanode/data:/hadoop/dfs/data
+      - ./volumes/datanode/logs:/opt/hadoop/logs
     networks:
       - spark-network
 
